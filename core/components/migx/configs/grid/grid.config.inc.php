@@ -493,6 +493,23 @@ renderDate : function(val, md, rec, row, col, s) {
 }
 ";
 
+$renderer['this.renderDay'] = "
+renderDay : function(val, md, rec, row, col, s) {
+    var date;
+     if (val && val != '') {
+        if (typeof val == 'number') {
+            date = new Date(val*1000);
+        } else {
+               date = Date.parseDate(val, 'Y-m-d H:i:s');
+        }
+        if (typeof(date) != 'undefined' ){
+              return String.format('{0}', date.format(MODx.config.manager_date_format));
+        }
+     }
+     return '';
+}
+";
+
 //$base_url = $this->modx->getOption('base_url');
 $img = '<a href="#" ><img class="controlBtn {3} {4} {5}" src="{0}" alt="{1}" title="{2}"></a>';
 $renderer['this.renderOptionSelector'] = "
